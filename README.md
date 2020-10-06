@@ -5,8 +5,11 @@ Official implementation of "Abnormality Detection in Chest X-ray Images Using Un
 
 ![model](./etc/fig_model.png)
 
-## Code
-The source code will be made publicly available when the paper is formally published.
+## Datasets
+
+## Requirements
+
+## Usage
 
 ## Cite
 ```latex
