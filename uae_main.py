@@ -30,14 +30,14 @@ def train():
     EPOCHS = 250
     loader = xray_data.get_xray_dataloader(
         BATCH_SIZE, WORKERS, 'train', img_size=IMG_SIZE, dataset=DATASET)
-    val_loader = xray_data.get_xray_dataloader(
-        BATCH_SIZE, WORKERS, 'valid', img_size=IMG_SIZE, dataset=DATASET)
+    test_loader = xray_data.get_xray_dataloader(
+        BATCH_SIZE, WORKERS, 'test', img_size=IMG_SIZE, dataset=DATASET)
 
     opt.epochs = EPOCHS
-    train_loop(model, loader, val_loader, opt)
+    train_loop(model, loader, test_loader, opt)
 
 
-def train_loop(model, loader, val_loader, opt):
+def train_loop(model, loader, test_loader, opt):
     device = torch.device('cuda:{}'.format(opt.cuda))
     print(opt.exp)
     optim = torch.optim.Adam(model.parameters(), 5e-4, betas=(0.5, 0.999))
@@ -65,7 +65,7 @@ def train_loop(model, loader, val_loader, opt):
             optim.zero_grad()
             loss.backward()
             optim.step()
-        auc = test_for_xray(opt, model, val_loader)
+        auc = test_for_xray(opt, model, test_loader)
         if not opt.u:
             l1s = np.mean(l1s)
             writer.add_scalar('auc', auc, e)
@@ -88,7 +88,6 @@ def train_loop(model, loader, val_loader, opt):
 
 
 def test_for_xray(opt, model=None, loader=None, plot=False, vae=False):
-    device = torch.device('cuda:{}'.format(opt.cuda))
     if model is None:
         model = models.AE(opt.ls, opt.mp, opt.u,
                                 img_size=IMG_SIZE, vae=vae).to(device)
@@ -166,7 +165,7 @@ if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('--u', dest='u', action='store_true')
     parser.add_argument('--gpu', dest='cuda', type=int, default=0)
-    parser.add_argument('--exp', dest='exp', type=str, default='myae')
+    parser.add_argument('--exp', dest='exp', type=str, default='ae')
     parser.add_argument('--eval', dest='eval', action='store_true')
     parser.add_argument('--ls', dest='ls', type=int, default=16)
     parser.add_argument('--mp', dest='mp', type=float, default=1)
@@ -178,4 +177,4 @@ if __name__ == '__main__':
         print('start ae training...')
         train()
     else:
-        test_for_xray(plot=True, vae=False)
+        test_for_xray(opt, plot=True)

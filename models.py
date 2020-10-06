@@ -66,6 +66,7 @@ class AE(nn.Module):
             nn.ConvTranspose2d(int(16*multiplier),
                                out_channels, 4, 2, 1, bias=False),
         )
+        self.initialize()
 
     def initialize(self):
         for m in self.modules():

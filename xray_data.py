@@ -29,13 +29,13 @@ def read_data():
         target = patient_dict[patient]
         if target == 0:
             os.system('cp {}{}{} {}{}'.format(
-                path, sub_path, file_name, path, 'normal/'))
+                path, sub_path, file_name, path, 'hhh/normal/'))
         if target == 1:
             os.system('cp {}{}{} {}{}'.format(
-                path, sub_path, file_name, path, 'not_normal/'))
+                path, sub_path, file_name, path, 'hhh/not_normal/'))
         if target == 2:
             os.system('cp {}{}{} {}{}'.format(
-                path, sub_path, file_name, path, 'lung_opacity/'))
+                path, sub_path, file_name, path, 'hhh/lung_opacity/'))
 
 
 class Xray(data.Dataset):
@@ -88,12 +88,8 @@ def get_xray_dataloader(bs, workers, dtype='train', img_size=64, dataset='rsna')
     elif dataset == 'pedia':
         path = DATA_PATH + 'pediatric/'
 
-    if dtype == 'train':
-        path += 'training'
-    elif dtype == 'valid':
-        path += 'validation'
-    elif dtype == 'test':
-        path += 'testing'
+    path += dtype
+    
     dset = Xray(main_path=path, transform=transform, img_size=img_size)
     train_flag = True if dtype == 'train' else False
     dataloader = data.DataLoader(dset, bs, shuffle=train_flag,
