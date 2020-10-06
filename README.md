@@ -5,11 +5,17 @@ Official implementation of "Abnormality Detection in Chest X-ray Images Using Un
 The source code will be made publicly available when the paper is formally published.
 
 ## Cite
-@inproceedings{mao2020abnormality, //
-  title={Abnormality Detection in Chest X-Ray Images Using Uncertainty Prediction Autoencoders},//
-  author={Mao, Yifan and Xue, Fei-Fei and Wang, Ruixuan and Zhang, Jianguo and Zheng, Wei-Shi and Liu, Hongmei},//
-  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},//
-  pages={529--538},//
-  year={2020},//
-  organization={Springer}//
+@inproceedings{mao2020abnormality, 
+
+  title={Abnormality Detection in Chest X-Ray Images Using Uncertainty Prediction Autoencoders},
+  
+  author={Mao, Yifan and Xue, Fei-Fei and Wang, Ruixuan and Zhang, Jianguo and Zheng, Wei-Shi and Liu, Hongmei},
+  
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  
+  pages={529--538},
+  
+  year={2020},
+  
+  organization={Springer}
 }
