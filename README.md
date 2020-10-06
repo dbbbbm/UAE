@@ -12,7 +12,13 @@ Pediatric Dataset: https://data.mendeley.com/datasets/rscbjbr9sj/3
 
 ## Basic usage
 To train a traditional autoencoder:
- python uae_main.py
+```python
+python uae_main.py
+```
+To train an autoencoder with uncertainty:
+```python
+python uae_main.py --u
+```
 ## Cite
 ```latex
 @inproceedings{mao2020abnormality,
