@@ -19,6 +19,10 @@ To train an autoencoder with uncertainty:
 ```python
 python uae_main.py --u
 ```
+To evaluate a model:
+```python
+python uae_main.py --eval --u(optional)
+```
 ## Cite
 ```latex
 @inproceedings{mao2020abnormality,
