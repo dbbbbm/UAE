@@ -2,13 +2,13 @@
 Implementation of "Abnormality Detection in Chest X-ray Images Using Uncertainty Prediction Autoencoders" in MICCAI 2020. 
  \[[paper](https://link.springer.com/chapter/10.1007/978-3-030-59725-2_51)\]
 
-![model](./etc/fig_model.png)
-
 ## Datasets
 RSNA Pneumonia Detection Challenge Dataset: https://www.kaggle.com/c/rsna-pneumonia-detection-challenge/data
 
 Pediatric Dataset: https://data.mendeley.com/datasets/rscbjbr9sj/3
+
 ## Requirements
+* python, pytorch, numpy, scikit-learn, tensorboard-pytorch
 
 ## Basic usage
 To train a traditional autoencoder:
@@ -23,6 +23,7 @@ To evaluate a model:
 ```python
 python uae_main.py --eval --u(optional)
 ```
+
 ## Cite
 ```latex
 @inproceedings{mao2020abnormality,
