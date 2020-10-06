@@ -1,12 +1,12 @@
 # UAE
-Official PyTorch implementation of "Abnormality Detection in Chest X-ray Images Using Uncertainty Prediction Autoencoders" in MICCAI 2020. 
+Implementation of "Abnormality Detection in Chest X-ray Images Using Uncertainty Prediction Autoencoders" in MICCAI 2020. 
  \[[paper](https://link.springer.com/chapter/10.1007/978-3-030-59725-2_51)\]
-\[[manuscript here](https://github.com/dbbbbm/UAE/blob/master/etc/paper.pdf)\]
 
 ![model](./etc/fig_model.png)
 
 ## Datasets
 RSNA Pneumonia Detection Challenge Dataset: https://www.kaggle.com/c/rsna-pneumonia-detection-challenge/data
+
 Pediatric Dataset: https://data.mendeley.com/datasets/rscbjbr9sj/3
 ## Requirements
 
