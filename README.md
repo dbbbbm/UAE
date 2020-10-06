@@ -6,7 +6,8 @@ Official PyTorch implementation of "Abnormality Detection in Chest X-ray Images 
 ![model](./etc/fig_model.png)
 
 ## Datasets
-
+RSNA Pneumonia Detection Challenge Dataset: https://www.kaggle.com/c/rsna-pneumonia-detection-challenge/data
+Pediatric Dataset: https://data.mendeley.com/datasets/rscbjbr9sj/3
 ## Requirements
 
 ## Usage
