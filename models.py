@@ -50,7 +50,6 @@ class AE(nn.Module):
         )
 
         self.decoder = nn.Sequential(
-
             nn.ConvTranspose2d(int(64*multiplier), int(64 *
                                                        multiplier), 4, 2, 1, bias=False),
             nn.BatchNorm2d(int(64*multiplier)),
@@ -66,7 +65,7 @@ class AE(nn.Module):
             nn.ConvTranspose2d(int(16*multiplier),
                                out_channels, 4, 2, 1, bias=False),
         )
-        self.initialize()
+        # self.initialize()
 
     def initialize(self):
         for m in self.modules():

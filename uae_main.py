@@ -19,8 +19,10 @@ from torchvision.utils import save_image
 BATCH_SIZE = 64
 WORKERS = 4
 IMG_SIZE = 64
-DATASET = ['rsna', 'pedia'][0]
+DATASET = ['rsna', 'pedia']
 torch.backends.cudnn.benchmark = True
+torch.manual_seed(0)
+np.random.seed(0)
 
 
 def train():
@@ -100,7 +102,6 @@ def test_for_xray(opt, model=None, loader=None, plot=False, vae=False):
     model.eval()
     with torch.no_grad():
         y_score, y_true = [], []
-        rec_errs, logvars = [], []
         for bid, (x, label) in tqdm(enumerate(loader)):
             x = x.to(device)
             if opt.u:
@@ -163,16 +164,18 @@ def metrics_at_eer(y_score, y_true):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('--u', dest='u', action='store_true')
-    parser.add_argument('--gpu', dest='cuda', type=int, default=0)
-    parser.add_argument('--exp', dest='exp', type=str, default='ae')
-    parser.add_argument('--eval', dest='eval', action='store_true')
-    parser.add_argument('--ls', dest='ls', type=int, default=16)
-    parser.add_argument('--mp', dest='mp', type=float, default=1)
+    parser.add_argument('--u', dest='u', action='store_true') # use uncertainty
+    parser.add_argument('--gpu', dest='cuda', type=int, default=0) # cuda id
+    parser.add_argument('--exp', dest='exp', type=str, default='ae') # experiment name
+    parser.add_argument('--eval', dest='eval', action='store_true') # test model
+    parser.add_argument('--ls', dest='ls', type=int, default=16) # the output size of encoder
+    parser.add_argument('--mp', dest='mp', type=float, default=1) # multiplier that controls the capacity of AE
+    parser.add_argument('--dataset', dest='dataset', type=int, default=0) # 0: rsna dataset 1: pediatric dataset
     opt = parser.parse_args()
     device = torch.device('cuda:{}'.format(opt.cuda))
     torch.cuda.set_device('cuda:{}'.format(opt.cuda))
     opt.exp += 'u' if opt.u else ''
+    DATASET = DATASET[opt.dataset]
     if not opt.eval:
         print('start ae training...')
         train()

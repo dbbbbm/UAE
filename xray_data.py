@@ -29,13 +29,13 @@ def read_data():
         target = patient_dict[patient]
         if target == 0:
             os.system('cp {}{}{} {}{}'.format(
-                path, sub_path, file_name, path, 'hhh/normal/'))
+                path, sub_path, file_name, path, 'normal/'))
         if target == 1:
             os.system('cp {}{}{} {}{}'.format(
-                path, sub_path, file_name, path, 'hhh/not_normal/'))
+                path, sub_path, file_name, path, 'not_normal/'))
         if target == 2:
             os.system('cp {}{}{} {}{}'.format(
-                path, sub_path, file_name, path, 'hhh/lung_opacity/'))
+                path, sub_path, file_name, path, 'lung_opacity/'))
 
 
 class Xray(data.Dataset):
@@ -69,19 +69,12 @@ class Xray(data.Dataset):
 
 
 def get_xray_dataloader(bs, workers, dtype='train', img_size=64, dataset='rsna'):
-    if dtype == 'train':
-        transform = transforms.Compose([
-            transforms.Resize(img_size),
-            # transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize((0.5,), (0.5,))
-        ])
-    else:
-        transform = transforms.Compose([
-            transforms.Resize(img_size),
-            transforms.ToTensor(),
-            transforms.Normalize((0.5,), (0.5,))
-        ])
+    
+    transform = transforms.Compose([
+        transforms.Resize(img_size),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5,), (0.5,))
+    ])
 
     if dataset == 'rsna':
         path = DATA_PATH + 'rsna-pneumonia-detection-challenge/'
