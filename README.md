@@ -11,6 +11,12 @@ Pediatric Dataset: https://data.mendeley.com/datasets/rscbjbr9sj/3
 * python, pytorch, numpy, scikit-learn, tensorboard-pytorch
 
 ## Basic usage
+Before running the scripts, you should edit `DATA_PATH` in `xray_data.py` in order to read the data correctly:
+
+```python
+DATA_PATH = '$WHERE_YOU_STORE_DATASETS'
+```
+
 To train a traditional autoencoder:
 ```python
 python uae_main.py
